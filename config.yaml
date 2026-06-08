@@ -1,0 +1,15 @@
+# Grup sumber yang akan dipantau
+sources:
+  - chat_id: null # -1003765107916 (id-nya)
+    parser_type: "price, GOLD DONE HIT TP1, Yuk, ready"
+    name: "CIRCLE TGA"
+  - chat_id: null # 375461315 (id)
+    parser_type: "price, GOLD DONE HIT TP1, Yuk, ready"
+    name: "benysutanto"
+
+# Akun/Grup/Channel tujuan pengiriman
+targets:
+  - chat_id: 375461315
+    name: "benysutanto"
+  - chat_id: 192453686
+    name: "Indra_Sitorus"
