@@ -1,5 +1,5 @@
 import logging
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 from typing import Union
 from src.core.entities.signal import TradingSignal, SignalUpdate, RawMessage
 
@@ -22,8 +22,8 @@ def format_signal_message(signal: TradingSignal) -> str:
     entry_max_str = str(int(signal.entry_max)) if signal.entry_max.is_integer() else str(signal.entry_max)
     sl_str = str(int(signal.stop_loss)) if signal.stop_loss.is_integer() else str(signal.stop_loss)
 
-    # Format waktu saat ini
-    now_str = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
+    # Format waktu saat ini (UTC+7)
+    now_str = datetime.now(timezone(timedelta(hours=7))).strftime("%d-%m-%Y %H:%M:%S")
 
     # Format header dengan nama group jika ada
     if signal.source_group:
@@ -54,7 +54,7 @@ def format_update_message(update: SignalUpdate) -> str:
     else:
         header = "📢 **SIGNAL UPDATE** 📢"
 
-    now_str = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
+    now_str = datetime.now(timezone(timedelta(hours=7))).strftime("%d-%m-%Y %H:%M:%S")
 
     return (
         f"{header}\n\n"
@@ -74,7 +74,7 @@ def format_raw_message(msg: RawMessage) -> str:
     else:
         header = "📢 **NEW SIGNAL RECEIVED** 📢"
 
-    now_str = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
+    now_str = datetime.now(timezone(timedelta(hours=7))).strftime("%d-%m-%Y %H:%M:%S")
 
     return (
         f"{header}\n\n"
